@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "admin/posts#index"
 
   namespace :api, defaults: {format: :json} do
+    resources :posts
+  end
+
+  namespace :admin do
     resources :posts
   end
 end
