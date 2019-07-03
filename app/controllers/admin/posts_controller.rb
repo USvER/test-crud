@@ -1,19 +1,26 @@
 class Admin::PostsController < AdminController
+  add_breadcrumb "Posts", :admin_posts_path
 
   def index
+    add_breadcrumb "All"
     @posts = collection
   end
 
   def show
     @post = resource
+
+    add_breadcrumb @post.title, edit_admin_post_path(@post)
+    add_breadcrumb "Edit"
     render :edit
   end
 
   def new
+    add_breadcrumb "New"
     @post = Post.new
   end
 
   def create
+    add_breadcrumb "New"
     @post = Post.new(post_params)
 
     if @post.save
@@ -25,10 +32,17 @@ class Admin::PostsController < AdminController
 
   def edit
     @post = resource
+
+    add_breadcrumb @post.title, edit_admin_post_path(@post)
+    add_breadcrumb "Edit"
+
   end
 
   def update
     @post = resource
+
+    add_breadcrumb @post.title, edit_admin_post_path(@post)
+    add_breadcrumb "Edit"
 
     if @post.update(post_params)
       redirect_to edit_admin_post_path(@post)

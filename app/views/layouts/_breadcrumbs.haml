@@ -1,0 +1,8 @@
+%nav.mt-4
+  %ol.breadcrumb
+    - @breadcrumbs.each_with_index do |breadcrumb, index|
+      %li.breadcrumb-item{class: ("active" if index == @breadcrumbs.size - 1)}
+        - if breadcrumb[:path]
+          = link_to breadcrumb[:name], breadcrumb[:path]
+        - else
+          = breadcrumb[:name]
