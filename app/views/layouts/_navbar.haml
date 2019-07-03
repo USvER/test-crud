@@ -1,0 +1,5 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light.border.rounded.mt-2
+  = link_to "ADMIN", root_path, class: 'navbar-brand'
+  %ul.navbar-nav
+    %li.nav-item{class: ("active" if controller_name == "posts")}
+      = link_to "POSTS", admin_posts_path, class: "nav-link"
