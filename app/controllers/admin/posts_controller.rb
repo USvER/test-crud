@@ -54,6 +54,8 @@ class Admin::PostsController < AdminController
   def destroy
     @post = resource
     @post.destroy
+
+    flash[:notice] = 'Post successfully deleted'
     redirect_to admin_posts_path
   end
 

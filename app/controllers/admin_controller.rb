@@ -1,5 +1,6 @@
 class AdminController < ActionController::Base
-
+  helper :application
+  
   protected
     def add_breadcrumb(name, path = nil)
       @breadcrumbs ||= []
@@ -12,4 +13,4 @@ class AdminController < ActionController::Base
         controller.send(:add_breadcrumb, name, path)
       end
     end
-  end
+end
