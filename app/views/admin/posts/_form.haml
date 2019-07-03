@@ -1,4 +1,5 @@
 = form_for [:admin, @post] do |f|
+  = render "shared/form_errors", {object: @post} unless @post.errors.empty?
   .form-group
     = f.label :title
     = f.text_field :title, class: "form-control"
