@@ -1,1 +1,8 @@
-%h1 FORM
+= form_for [:admin, @post] do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: "form-control"
+  .form-group
+    = f.label :body
+    = f.text_area :body, class: "form-control", rows: "10"
+  = f.submit "SUBMIT", class: "btn btn-primary float-right"
