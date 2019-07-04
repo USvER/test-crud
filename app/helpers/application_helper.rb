@@ -1,6 +1,5 @@
 module ApplicationHelper
   def flash_class(level)
-    Rails.logger.debug level.inspect
     case level
       when 'notice'
         "alert alert-info"
