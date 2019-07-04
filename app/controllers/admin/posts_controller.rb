@@ -9,25 +9,23 @@ class Admin::PostsController < AdminController
   def show
     @post = resource
 
-    add_breadcrumb @post.title, edit_admin_post_path(@post)
-    add_breadcrumb "Edit"
-    render :edit
+    render partial: 'modal_form', layout: false
   end
 
   def new
     add_breadcrumb "New"
     @post = Post.new
+    
+    render partial: 'modal_form', layout: false
   end
 
   def create
     add_breadcrumb "New"
     @post = Post.new(post_params)
+    
+    @post.save
 
-    if @post.save
-      redirect_to edit_admin_post_path(@post)
-    else
-      render :new
-    end
+    render partial: 'modal_form', layout: false
   end
 
   def edit
@@ -36,6 +34,7 @@ class Admin::PostsController < AdminController
     add_breadcrumb @post.title, edit_admin_post_path(@post)
     add_breadcrumb "Edit"
 
+    render partial: 'modal_form', layout: false
   end
 
   def update
@@ -44,11 +43,8 @@ class Admin::PostsController < AdminController
     add_breadcrumb @post.title, edit_admin_post_path(@post)
     add_breadcrumb "Edit"
 
-    if @post.update(post_params)
-      redirect_to edit_admin_post_path(@post)
-    else
-      render :edit
-    end
+    @post.update(post_params)
+    render partial: 'modal_form', layout: false
   end
 
   def destroy

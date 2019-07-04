@@ -1,9 +1,21 @@
-= form_for [:admin, @post] do |f|
-  = render "shared/form_errors", {object: @post} unless @post.errors.empty?
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: "form-control"
-  .form-group
-    = f.label :body
-    = f.text_area :body, class: "form-control", rows: "10"
-  = f.submit "SUBMIT", class: "btn btn-primary float-right"
+.modal-dialog{role: "document"}
+  .modal-content
+    = form_for [:admin, @post], remote: true do |f|
+      .modal-header
+        %h5.modal-title
+          - if @post.new_record?
+            New Post
+          - else
+            Edit Post
+        %button.close{type: "button", data: {dismiss: "modal"}}
+          %span ×
+      .modal-body
+        = render "shared/form_errors", {object: @post} unless @post.errors.empty?
+        .form-group
+          = f.label :title
+          = f.text_field :title, class: "form-control"
+        .form-group
+          = f.label :body
+          = f.text_area :body, class: "form-control", rows: "10"        
+      .modal-footer
+        = f.submit "SUBMIT", class: "btn btn-primary float-right"

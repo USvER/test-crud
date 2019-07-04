@@ -1,7 +1,7 @@
 .card.mt-4
   .card-header
     All Posts
-    = link_to "ADD", new_admin_post_path, class: "btn btn-success btn-sm float-right"
+    = link_to "ADD", new_admin_post_path, class: "btn btn-success btn-sm float-right", remote: true
   .card-body.p-0
     %table.posts-listing.table.table-striped.table-hover.m-0
       %thead
@@ -18,5 +18,5 @@
             %th #{post.id}
             %td #{post.title}
             %td.nowrap
-              = link_to "EDIT", edit_admin_post_path(post), class: "btn btn-primary btn-sm"
-              = link_to "DELETE", admin_post_path(post), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' }
+              = link_to "EDIT", edit_admin_post_path(post), class: "btn btn-primary btn-sm", remote: true
+              = link_to "DELETE", admin_post_path(post), class: "btn btn-danger btn-sm", method: :delete, remote: true, data: { confirm: 'Are you sure?'}
