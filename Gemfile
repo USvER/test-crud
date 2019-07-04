@@ -46,7 +46,18 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
+  gem 'rspec-html-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
+gem 'turbolinks'
+
+gem 'haml-rails', '~> 2.0'
+gem 'bootstrap', '~> 4.3.1'
+gem 'jquery-rails'

@@ -1,0 +1,22 @@
+.card.mt-4
+  .card-header
+    All Posts
+    = link_to "ADD", new_admin_post_path, class: "btn btn-success btn-sm float-right"
+  .card-body.p-0
+    %table.posts-listing.table.table-striped.table-hover.m-0
+      %thead
+        %tr
+          %th.id-column
+            id
+          %th.w-100
+            Title
+          %th
+            Actions
+      %tbody
+        - @posts.each do |post|
+          %tr
+            %th #{post.id}
+            %td #{post.title}
+            %td.nowrap
+              = link_to "EDIT", edit_admin_post_path(post), class: "btn btn-primary btn-sm"
+              = link_to "DELETE", admin_post_path(post), class: "btn btn-danger btn-sm", method: :delete, data: { confirm: 'Are you sure?' }
