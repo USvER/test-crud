@@ -26,8 +26,8 @@ RSpec.describe Admin::PostsController, type: :controller do
       expect(assigns(:post)).to eq(post)
     end
 
-    it "renders the admin/posts/_modal_form template" do
-      expect(response).to render_template('admin/posts/_modal_form')
+    it "renders the admin/posts/show template" do
+      expect(response).to render_template('admin/posts/show')
     end
 
     it "returns HTTP 200" do

@@ -13,8 +13,7 @@ class Admin::PostsController < AdminController
 
   def show
     @post = resource
-
-    render partial: 'modal_form', layout: false
+    add_breadcrumb @post.title
   end
 
   def new
