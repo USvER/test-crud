@@ -4,29 +4,34 @@ class Admin::PostsController < AdminController
   def index
     add_breadcrumb "All"
     @posts = collection
+
+    respond_to do |format|
+      format.html
+      format.js { render layout: false }
+    end
   end
 
   def show
     @post = resource
-
-    add_breadcrumb @post.title, edit_admin_post_path(@post)
-    add_breadcrumb "Edit"
-    render :edit
+    add_breadcrumb @post.title
   end
 
   def new
-    add_breadcrumb "New"
     @post = Post.new
+    
+    render partial: 'modal_form', layout: false
   end
 
   def create
-    add_breadcrumb "New"
     @post = Post.new(post_params)
-
+    
     if @post.save
-      redirect_to edit_admin_post_path(@post)
+      add_breadcrumb "All"
+      @posts = collection
+
+      render 'index.js.erb', layout: false
     else
-      render :new
+      render partial: 'modal_form', layout: false
     end
   end
 
@@ -36,6 +41,7 @@ class Admin::PostsController < AdminController
     add_breadcrumb @post.title, edit_admin_post_path(@post)
     add_breadcrumb "Edit"
 
+    render partial: 'modal_form', layout: false
   end
 
   def update
@@ -45,9 +51,12 @@ class Admin::PostsController < AdminController
     add_breadcrumb "Edit"
 
     if @post.update(post_params)
-      redirect_to edit_admin_post_path(@post)
+      add_breadcrumb "All"
+      @posts = collection
+
+      render 'index.js.erb', layout: false
     else
-      render :edit
+      render partial: 'modal_form', layout: false
     end
   end
 

@@ -3,7 +3,6 @@
   %head
     %meta{:charset => "utf-8"}/
     %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
-
     %title Admin panel
     
     = csrf_meta_tags
@@ -11,9 +10,10 @@
 
     = stylesheet_link_tag "application", media: "all"
     = javascript_include_tag "application"
-  %body
+  %body{data: {turbolinks: "false"}}
     %main.container{role: "main"}
       = render "layouts/navbar"
       = render "layouts/breadcrumbs"
       = render "layouts/flash_messages"
       = yield
+      #modal.modal.fade{role: "dialog", tabindex: "-1"}
