@@ -59,8 +59,8 @@ RSpec.describe Admin::PostsController, type: :controller do
         expect(assigns(:post)).not_to be_new_record # persisted
       end
 
-      it "renders the admin/posts/_modal_form template" do
-        expect(response).to render_template('admin/posts/_modal_form')
+      it "renders the admin/posts/index.js.erb template" do
+        expect(response).to render_template('admin/posts/index.js.erb')
       end
     end
 
@@ -87,8 +87,8 @@ RSpec.describe Admin::PostsController, type: :controller do
       expect(assigns(:post).changed?).to be false # changes have been saved
     end
 
-    it "renders the admin/posts/_modal_form template" do
-      expect(response).to render_template('admin/posts/_modal_form')
+    it "renders the admin/posts/index.js.erb template" do
+      expect(response).to render_template('admin/posts/index.js.erb')
     end
   end
 

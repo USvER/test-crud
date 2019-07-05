@@ -5,9 +5,9 @@
 //= require bootstrap
 
 
-$(document).on("turbolinks:load", function () {
-  $('#modal').on('hidden.bs.modal', function () {
-    Turbolinks.visit(window.location, { action: 'replace' })
-  });
-});
+// $(document).on("turbolinks:load", function () {
+//   $('#modal').on('hidden.bs.modal', function () {
+//     Turbolinks.visit(window.location, { action: 'replace' })
+//   });
+// });
 
