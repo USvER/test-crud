@@ -7,6 +7,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'database_cleaner'
+require 'capybara/rspec'
+require 'webdrivers'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -39,6 +41,21 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+# This block configures Caypbara's driver to use Selenium
+# It makes it use the chrome browser, but can also be configured to user Firefox, etc. 
+Capybara.register_driver :selenium do |app|
+     Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+# Uncomment to use capybara-webkit driver for headless testing
+# Capybara.javascript_driver = :webkit
+# Capybara.run_server = false
+# Capybara.app_host = "https://my-website.mysite.com"
+Capybara.configure do |config|
+  config.default_max_wait_time = 10 #seconds
+  config.default_driver = :selenium
+  # config.always_include_port = true
 end
 
 RSpec.configure do |config|
@@ -89,6 +106,4 @@ RSpec.configure do |config|
       example.run
     end
   end
-  
-
 end
