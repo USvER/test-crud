@@ -43,21 +43,6 @@ Shoulda::Matchers.configure do |config|
   end
 end
 
-# This block configures Caypbara's driver to use Selenium
-# It makes it use the chrome browser, but can also be configured to user Firefox, etc. 
-Capybara.register_driver :selenium do |app|
-     Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
-# Uncomment to use capybara-webkit driver for headless testing
-# Capybara.javascript_driver = :webkit
-# Capybara.run_server = false
-# Capybara.app_host = "https://my-website.mysite.com"
-Capybara.configure do |config|
-  config.default_max_wait_time = 10 #seconds
-  config.default_driver = :selenium
-  # config.always_include_port = true
-end
-
 RSpec.configure do |config|
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods
@@ -65,6 +50,25 @@ RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
   
   config.include RSpecHtmlMatchers  
+
+
+  Capybara.register_driver(:chrome) do |app|
+    chrome_args = %w[window-size=1920,1080 headless disable-gpu]
+
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: { args: chrome_args }
+    )
+
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      desired_capabilities: capabilities
+    )
+  end
+  
+  Capybara.default_driver = :chrome
+  Capybara.javascript_driver = :chrome
+
   
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
