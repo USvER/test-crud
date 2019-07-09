@@ -9,6 +9,9 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'webdrivers'
+require 'simplecov'
+
+SimpleCov.start 'rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
