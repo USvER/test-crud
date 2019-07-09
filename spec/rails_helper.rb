@@ -7,6 +7,11 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'database_cleaner'
+require 'capybara/rspec'
+require 'webdrivers'
+require 'simplecov'
+
+SimpleCov.start 'rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
@@ -48,6 +53,25 @@ RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
   
   config.include RSpecHtmlMatchers  
+
+
+  Capybara.register_driver(:chrome) do |app|
+    chrome_args = %w[window-size=1920,1080 headless disable-gpu]
+
+    capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+      chromeOptions: { args: chrome_args }
+    )
+
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      desired_capabilities: capabilities
+    )
+  end
+  
+  Capybara.default_driver = :chrome
+  Capybara.javascript_driver = :chrome
+
   
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -89,6 +113,4 @@ RSpec.configure do |config|
       example.run
     end
   end
-  
-
 end

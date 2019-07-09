@@ -48,6 +48,10 @@ group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
   gem 'rspec-html-matchers'
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers", "~> 4.0"
+  gem "simplecov"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
