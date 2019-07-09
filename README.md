@@ -1,24 +1,9 @@
-# README
+# Simple CRUD rails app [![Build Status](https://travis-ci.org/USvER/test-crud.svg)](https://travis-ci.org/USvER/test-crud)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+It consists of Admin page and API to manage Posts
+Data is stored in Postgres
+API is a regular Rails API
+Admin page is a simple rails app with turbolinks and jquery + bootstrap UI
+Testing is done by RSpec(Model/Controller/View/Request) + Capybara(Feature)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Build badge is the latest build.
